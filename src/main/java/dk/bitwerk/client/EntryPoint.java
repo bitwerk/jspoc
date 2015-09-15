@@ -6,11 +6,6 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 
 	@Override
 	public void onModuleLoad() {
-		MyFunctionalInterface func = (String name) -> { return "Hello " + name; };
-		GWT.log(func.sayHello("there"));
+		GWT.log("Entrypoint loaded ...");
 	}
-}
-
-interface MyFunctionalInterface {
-	String sayHello(String name);
 }
