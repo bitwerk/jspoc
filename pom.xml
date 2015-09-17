@@ -10,56 +10,72 @@
 	<name>Empty GWT project</name>
 
 	<properties>
-		<gwtVersion>2.8.0-SNAPSHOT</gwtVersion>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<gwt.version>2.8.0-SNAPSHOT</gwt.version>
+		<!-- <gwt.version>2.7.0</gwt.version> -->
+		<webappDirectory>${project.build.directory}/${project.artifactId}</webappDirectory>
 	</properties>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.google.gwt</groupId>
-				<artifactId>gwt</artifactId>
-				<version>${gwtVersion}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-servlet</artifactId>
-			<scope>runtime</scope>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>validation-api</artifactId>
+					<groupId>javax.validation</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>com.google.gwt</groupId> -->
+		<!-- <artifactId>gwt-codeserver</artifactId> -->
+		<!-- </dependency> -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
-			<artifactId>gwt-user</artifactId>
-			<scope>provided</scope>
+			<artifactId>gwt-elemental</artifactId>
+			<version>${gwt.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.gwt</groupId>
 			<artifactId>gwt-dev</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
+			<version>${gwt.version}</version>
 		</dependency>
 	</dependencies>
-
 	<build>
-		<outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
-
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 		<plugins>
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.2.11.v20150529</version>
+				<configuration>
+					<webApp>
+						<baseResource implementation="org.eclipse.jetty.util.resource.ResourceCollection">
+							<resourcesAsCSV>${webappDirectory}</resourcesAsCSV>
+						</baseResource>
+					</webApp>
+					<httpConnector>
+						<port>8888</port>
+					</httpConnector>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+					<webappDirectory>${webappDirectory}</webappDirectory>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>gwt-maven-plugin</artifactId>
-				<version>2.7.0</version>
+				<version>${gwt.version}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -68,19 +84,10 @@
 					</execution>
 				</executions>
 				<configuration>
-					<runTarget>jspoc.html</runTarget>
-					<modules>
-						<module>dk.bitwerk.jspoc</module>
-					</modules>
-					<style>PRETTY</style>
-                    <jsInteropMode>JS</jsInteropMode>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<packagingExcludes>WEB-INF/classes/**,WEB-INF/lib/**,WEB-INF/deploy/**</packagingExcludes>
+					<jsInteropMode>JS</jsInteropMode>
+					<style>DETAILED</style>
+					<hostedWebapp>${webappDirectory}</hostedWebapp>
+					<webappDirectory>${webappDirectory}</webappDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
