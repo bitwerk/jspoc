@@ -5,7 +5,7 @@ public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
   @Override
   public void onModuleLoad() {
     // GWT.log("Entrypoint loaded ...");
-    jsLog("GWT Entrypoint loaded ...");
+    jsLog("GWT Entrypoint has loaded now...");
     
   }
 
