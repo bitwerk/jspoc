@@ -9,19 +9,13 @@
 	<script type="text/javascript">
 		
 		window.onload = function() {
-			console.log("Page has loaded, but GWT app again has not loaded yet");
-		};
-				
-		console.log("Main page script is executed, but GWT app yet has not loaded");
-		
-		// wait 3 more seconds for GWT to be loaded
-		setTimeout(function() {
-			console.log("3 seconds after page has loaded");
-			
+			console.log("Page has loaded, with SSO linker GWT app is loaded");
 			var obj = new poc.JsHello();
 			alert(obj.sayHello("there - setTimeout 3 seconds"));
-			
-		}, 3000);
+		};
+		
+		console.log("Main page script is executed, but GWT app yet has not loaded");
+
 	</script>
 	<div id="rootPanel"></div>
 	<iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1'
