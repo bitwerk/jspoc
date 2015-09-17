@@ -1,0 +1,23 @@
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+  
+# Gradle
+.gradletasknamecache
+.gradle/
+build/
+bin/
+
+# Eclipse 
+.settings/
+.checkstyle
+.classpath
+.pmd
+.pmdruleset
+.pmdruleset.xml
+.project
+
+# Maven 
+target/
