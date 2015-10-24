@@ -11,10 +11,15 @@
 		window.onload = function() {
 			console.log("Page has loaded, with SSO linker GWT app is loaded");
 			var obj = new poc.JsHello();
-			alert(obj.sayHello("there - setTimeout 3 seconds"));
+			
+			alert(obj.ping());
+			
+			obj.register(function(msg){
+				alert(msg);
+			});
+			
+			obj.invoke("foo");
 		};
-		
-		console.log("Main page script is executed, but GWT app yet has not loaded");
 
 	</script>
 	<div id="rootPanel"></div>

@@ -8,8 +8,17 @@ import com.google.gwt.core.client.js.JsType;
 @JsType
 @JsNamespace("poc")
 public class JsHello {
+	private Listener listener;
 
-  public String sayHello(String name) {
-    return "Hello " + name;
-  }
+	public String ping() {
+		return "ping received from host page";
+	}
+
+	public void register(Listener listener) {
+		this.listener = listener;
+	}
+
+	public void invoke(String event) {
+		listener.onEvent("Disppatched: " + event);
+	}
 }
