@@ -9,16 +9,8 @@
 	<script type="text/javascript">
 		
 		window.onload = function() {
-			console.log("Page has loaded, with SSO linker GWT app is loaded");
-			var obj = new poc.JsHello();
-			
-			alert(obj.ping());
-			
-			obj.register(function(msg){
-				alert(msg);
-			});
-			
-			obj.invoke("foo");
+			var dispatcher = new poc.Dispatcher();
+			alert("Dispatch: " + dispatcher.dispatch("action1", {"foo": "a", "bar": 2}));
 		};
 
 	</script>
