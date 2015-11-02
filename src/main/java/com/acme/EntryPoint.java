@@ -1,4 +1,4 @@
-package dk.bitwerk.client;
+package com.acme;
 
 public class EntryPoint implements com.google.gwt.core.client.EntryPoint {
 

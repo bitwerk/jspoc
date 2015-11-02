@@ -9,8 +9,10 @@
 	<script type="text/javascript">
 		
 		window.onload = function() {
-			var dispatcher = new poc.Dispatcher();
-			alert("Dispatch: " + dispatcher.dispatch("action1", {"foo": "a", "bar": 2}));
+			var baz = { qux: 42 };
+			var result = com.acme.Bar.action(baz); // will return 42!
+
+			console.log(result);
 		};
 
 	</script>
