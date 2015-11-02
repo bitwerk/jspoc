@@ -2,7 +2,7 @@ package com.acme;
 
 import jsinterop.annotations.JsMethod;
 
-class Bar {
+public class Bar {
   @JsMethod
   public static int action(Foo foo) {
   	Baz baz = (Baz) foo;
