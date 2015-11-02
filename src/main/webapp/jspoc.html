@@ -10,7 +10,7 @@
 		
 		window.onload = function() {
 			var baz = { qux: 42 };
-			var result = com.acme.Bar.action(baz); // will return 42!
+			var result = com.acme.Bar.action(baz); // Should return 42, but throws 'Uncaught [object Object]'!
 
 			console.log(result);
 		};
