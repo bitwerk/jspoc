@@ -9,8 +9,11 @@
 	<script type="text/javascript">
 		
 		window.onload = function() {
+			var num = com.acme.IntParser.parseArray(["42"]); // Should return 42, but throws 'Uncaught [object Object]'!
+			alert("number was: " + num);
+			
 			var baz = { qux: 42 };
-			var result = com.acme.Bar.action(baz); // Should return 42, but throws 'Uncaught [object Object]'!
+			com.acme.Bar.action(baz); // Should return 42, but throws 'Uncaught [object Object]'!
 
 			console.log(result);
 		};
